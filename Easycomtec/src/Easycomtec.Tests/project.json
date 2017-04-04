@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.1"
+    },
+    "CoreCompat.Selenium.WebDriver": "2.54.0-beta002",
+    "System.ComponentModel": "4.3.0",
+    "Microsoft.Extensions.DependencyInjection": "1.1.0",
+    "Easycomtec.Lib": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "portable-net45+win8"
+    }
+  }
+}
