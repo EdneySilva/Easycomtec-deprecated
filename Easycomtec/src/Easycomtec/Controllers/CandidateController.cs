@@ -12,9 +12,9 @@ namespace Easycomtec.Controllers
     public class CandidateController : Controller
     {
         IRepository EasyRepository { get; set; }
-        public CandidateController(IRepository repository)
+        public CandidateController()
         {
-            EasyRepository = repository;
+         
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -26,12 +26,19 @@ namespace Easycomtec.Controllers
         {
             return View();
         }
+        
+        public IActionResult PersonalData()
+        {
+            return View();
+        }
 
         [HttpPost]
         public IActionResult Create(Candidate candidate)
         {
-            if (this.ModelState.IsValid) ;
-            
+            if (!this.ModelState.IsValid) ;
+            Repository repository = new Repository();
+            repository.AddOrUpdate(candidate);
+            repository.SaveChanges();
             return View();
         }
     }

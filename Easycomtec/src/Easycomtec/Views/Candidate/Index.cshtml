@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div>
+    <div ng-app="app">
+        <div class="container body-content ">
+            <div ng-controller="Candidate as vm" class="col-md-6">
+                {{vm.candidate.Name}}
+                <candidator candidate="vm.candidate"></candidator>
+                <div ng-controller="Phone as vmPhone" >
+                    <phone candidate="vmPhone.phone"></phone>
+                </div>
+                <table class="table table-responsive table-hover table-striped" >
+                    <thead>
+                        <tr><th>Phone</th><th>#</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="phone in vm.candidate.Phones">
+                            <td>
+                                {{phone.Number}}
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div ng-controller="Address as vmAddress">
+                    <address candidate="vmAddress.address"></address>
+                </div>
+                <div ng-controller="Skill as vmSkill">
+                    <skill candidate="vmSkill.skill"></skill>
+                </div>
+            </div>
+            <button ng-click="$ctrl.teste()">teste</button>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="~/js/Candidate.js"></script>
+    <script src="~/js/Address.js"></script>
+    <script src="~/js/Skill.js"></script>
+    <script src="~/js/Phone.js"></script>
+    <script src="~/js/personaldata.js"></script>
+}
