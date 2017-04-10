@@ -1,9 +1,10 @@
 ﻿
 <div class="form-group">
     <label for="Name">Name</label>
-    <input type="text" id="Email" name="Name" ng-model="$ctrl.Name" class="form-control" ng-required="true" />
+    <input type="text" id="Email" name="Name" ng-model="$ctrl.candidate.Name" class="form-control" ng-required="true" />
 </div>
 <div class="form-group">
     <label for="BirthDate">Birth Date</label>
-    <input type="date" name="BirthDate" ng-model="$ctrl.BirthDate" class="form-control" ng-required="true" />
+    <input type="date" name="BirthDate" ng-model="$ctrl.candidate.BirthDate" class="form-control" ng-required="true" />
 </div>
+<button ng-click="$ctrl.teste()">teste</button>
