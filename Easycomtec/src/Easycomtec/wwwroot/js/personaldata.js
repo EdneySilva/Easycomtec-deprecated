@@ -11,22 +11,27 @@
         }
         
     });
-    angular.module("app").controller("Candidate", function Candidate(user) {
+    angular.module("app").controller("Candidate", function Candidate(user, PhoneService, SkillService) {
+        this.level = Level;
+        this.phoneService = PhoneService
+        this.skillService = SkillService;
         this.candidate = user;
-        var p = new Phone()
-        p.Number = "(41)99998888";
-        this.candidate.AddPhone(p);
-        var p2 = new Phone()
-        p2.Number = "(41)99992222";
-        this.candidate.AddPhone(p2);
+        var contexto = this;
+        this.skillService.onSkillAdding(function (skill) {
+            contexto.candidate.AddSkill(skill);
+        });
+        this.phoneService.onPhoneAdding(function (phone) {
+            contexto.candidate.AddPhone(phone);
+        });
+        this.salvar = function () {
+             
+        }
     }).component("candidator", {
         bindings: {
             candidate: '='
         },
-        controller: function (CandidateService, Step, $scope) {
-            this.teste = function () {
-
-            }
+        controller: function (CandidateService, $scope) {
+            
         },
         templateUrl: function (Step) {
             return "/app/candidate/personaldata.html";

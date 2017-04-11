@@ -1,8 +1,16 @@
 ﻿<div class="form-group">
     <label for="Name">Skill</label>
-    <input type="text" id="Name" name="Name" ng-model="$ctrl.Name" class="form-control" ng-required="true" />
+    <div class="input-group">
+        <input type="text" id="Name" name="Name" ng-model="$ctrl.skill.Name" class="form-control" ng-required="true" />
+        <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.add();">add</button>
+        </span>
+    </div>
 </div>
 <div class="form-group">
-    <label for="BirthDate">Birth Date</label>
-    <input type="date" name="BirthDate" ng-model="BirthDate" class="form-control" ng-required="true" />
+    <label for="Level">Level</label>
+    <select ng-model="$ctrl.skill.Level" class="form-control">
+        <option ng-repeat="level in $ctrl.levels" value="{{level.value}}" >{{level.name}}</option>
+    </select>
+    <!--<input type="text" name="Level" ng-model="$ctrl.skill.Level" class="form-control" ng-required="true" />-->
 </div>

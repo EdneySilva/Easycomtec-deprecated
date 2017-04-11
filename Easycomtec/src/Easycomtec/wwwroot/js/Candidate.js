@@ -1,11 +1,20 @@
-﻿function Skill() {
+﻿var Level;
+(function (Level) {
+    Level[Level["DONOT KNOW"] = 1] = "DONOT KNOW";
+    Level[Level["KNOW"] = 2] = "KNOW";
+    Level[Level["BASIC"] = 3] = "BASIC";
+    Level[Level["INTERMEDIATE"] = 4] = "INTERMEDIATE";
+})(Level || (Level = {}));
+
+function Skill() {
     this.Id = 0;
     this.Name = "";
     this.Level = 0;
+    this.LevelName = "";
     return this;
 }
 
-function Phone() {
+function PhoneNumber() {
     this.Id = 0;
     this.Number = "";
 }

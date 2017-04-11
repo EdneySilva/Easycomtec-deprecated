@@ -1,10 +1,10 @@
 ﻿
 <div class="form-group">
     <label for="Number">Phone Number</label>    
-    <div class="input-group">
-        <input type="tel" name="Number" ng-model="$ctrl.Number" class="form-control" ng-required="true" />        
+    <div class="input-group">        
+        <input type="tel" name="Number" ng-model="$ctrl.phone.Number" class="form-control" ng-required="true" />        
         <span class="input-group-btn">
-            <button class="btn btn-primary" type="button">add</button>
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.add();">add</button>
         </span>
     </div>
 </div>
