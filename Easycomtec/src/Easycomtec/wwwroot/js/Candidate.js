@@ -32,6 +32,13 @@ function Address() {
     return this;
 }
 
+function Account() {
+    this.Email = "";
+    this.Password = "";
+
+    return this;
+}
+
 function User() {
     this.Id = 0;
     this.Name = "";
@@ -39,6 +46,7 @@ function User() {
     this.Phones = [];
     this.Skills = [];
     this.Address = {};
+    this.Account = {};
     this.AddPhone = function (phone) {
         this.Phones.push(phone);
     }
@@ -50,6 +58,9 @@ function User() {
 
 (function (angular) {
     var app = angular.module('app', []);
+    //app.config(function ($routeProvider) {
+    //    $routeProvider.when("/")
+    //});
     app.factory("user", function () {
         return new User();
     });

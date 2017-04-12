@@ -4,6 +4,7 @@
         this.skill = {};        
     }).component("skill", {
         bindings: {
+            candidate: '=',
             skill: '=',
             skillAdded: "&"
         },

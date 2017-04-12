@@ -8,3 +8,17 @@
         </span>
     </div>
 </div>
+
+<table class="table table-responsive table-hover table-striped">
+    <thead>
+        <tr><th>Phone</th><th>#</th></tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="phone in $ctrl.candidate.Phones">
+            <td>
+                {{phone.Number}}
+            </td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

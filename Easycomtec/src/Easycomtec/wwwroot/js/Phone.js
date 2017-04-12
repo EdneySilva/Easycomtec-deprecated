@@ -4,14 +4,16 @@
         this.phone = new PhoneNumber();
     }).component("phonecontrol", {
         bindings: {
-            phone: '='
+            phone: '=',
+            candidate: "="
         },
         controller: function (PhoneService, $scope) {
             this.add = function () {
                 var _phone = new PhoneNumber();
                 _phone.Id = this.phone.Id;
                 _phone.Number = this.phone.Number;
-                PhoneService.addPhone(_phone);
+                this.candidate.AddPhone(_phone);
+                //PhoneService.addPhone(_phone);
                 this.phone.Number = "";
             }
         },

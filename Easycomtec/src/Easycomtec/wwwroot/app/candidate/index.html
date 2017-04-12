@@ -1,0 +1,18 @@
+﻿<candidator candidate="$ctrl.candidateController.candidate" ng-show="$ctrl.showStep('personal')"></candidator>
+<div ng-controller="Phone as vmPhone" ng-show="$ctrl.showStep('phone')">
+    <phonecontrol phone="vmPhone.phone" candidate="$ctrl.candidateController.candidate"></phonecontrol>
+</div>
+<div ng-controller="SkillControl as vmSkill" ng-show="$ctrl.showStep('skill')">
+    <skill skill="vmSkill.skill" candidate="$ctrl.candidateController.candidate" skill-added="$ctrl.candidateController.onAddSkill(skill)"></skill>
+</div>
+<div ng-controller="AddressControl as vmAddress" ng-show="$ctrl.showStep('address')">
+    <address address="vmAddress.address" address-created="$ctrl.candidateController.onAddAddress(address)"></address>
+</div>
+
+<div class="btn-group btn-group-justified">
+    <a href="#" ng-class="{disabled: !$ctrl.hasPrevious() }" class="btn btn-default" ng-click="$ctrl.previous()">Previous</a>
+    <a href="#" class="btn btn-default disabled"></a>
+    <a href="#" ng-class="{disabled: !$ctrl.hasNext() }" class="btn btn-default" ng-click="$ctrl.next()">Next</a>
+</div>
+<br />
+<button ng-disabled="$ctrl.hasNext()" ng-click="$ctrl.candidateController.save()" class="btn btn-primary btn-block">salvar</button>

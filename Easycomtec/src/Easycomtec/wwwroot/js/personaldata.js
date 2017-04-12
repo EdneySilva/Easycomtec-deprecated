@@ -11,7 +11,7 @@
         }
         
     });
-    angular.module("app").controller("Candidate", function Candidate(user, PhoneService) {
+    angular.module("app").controller("Candidate", function Candidate(user, PhoneService, $http) {
         this.level = Level;
         this.phoneService = PhoneService;
         this.candidate = user;
@@ -24,6 +24,16 @@
         }
         this.onAddSkill = function (skill) {
             contexto.candidate.AddSkill(skill);
+        }
+        this.save = function () {
+            $http.post("/Candidate/Create", JSON.stringify(this.candidate),
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function (response) {
+
+                });
         }
     }).component("candidator", {
         bindings: {

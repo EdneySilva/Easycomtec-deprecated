@@ -31,15 +31,24 @@ namespace Easycomtec.Controllers
         {
             return View();
         }
-
+                
         [HttpPost]
-        public IActionResult Create(Candidate candidate)
+        public JsonResult Create([FromBody]Candidate candidate)
         {
-            if (!this.ModelState.IsValid) ;
-            Repository repository = new Repository();
-            repository.AddOrUpdate(candidate);
-            repository.SaveChanges();
-            return View();
+            //if (!this.ModelState.IsValid) ;
+            try
+            {
+                Repository repository = new Repository();
+                repository.AddOrUpdate(candidate);
+                repository.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+            }
+            return Json(new
+            {
+            });
+            //return View();
         }
     }
 }

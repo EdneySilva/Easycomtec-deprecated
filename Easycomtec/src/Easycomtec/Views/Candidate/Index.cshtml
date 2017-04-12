@@ -1,49 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div>
+<div class="">
     <div ng-app="app">
-        <div class="container body-content ">
-            <div ng-controller="Candidate as vm" class="col-md-6">                
-                <candidator candidate="vm.candidate"></candidator>
-                <div ng-controller="Phone as vmPhone" >
-                    <phonecontrol phone="vmPhone.phone"></phonecontrol>
+        <div class="body-content">
+            <div class="panel panel-default">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                    <div ng-controller="Candidate as vm" class="col-md-6">
+                        <candidate-step candidate-controller="vm"></candidate-step>
+                    </div>
                 </div>
-                <table class="table table-responsive table-hover table-striped" >
-                    <thead>
-                        <tr><th>Phone</th><th>#</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="phone in vm.candidate.Phones">
-                            <td>
-                                {{phone.Number}}
-                            </td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div ng-controller="SkillControl as vmSkill">
-                    <skill skill="vmSkill.skill" skill-added="vm.onAddSkill(skill)"></skill>
-                </div>
-                <table class="table table-responsive table-hover table-striped">
-                    <thead>
-                        <tr><th>Skill</th><th>Level</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="skill in vm.candidate.Skills">
-                            <td>
-                                {{skill.Name}}
-                            </td>
-                            <td>
-                                {{skill.LevelName}}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div ng-controller="AddressControl as vmAddress">
-                    <address address="vmAddress.address" address-created="vm.onAddAddress(address)"></address>
-                </div>
-                <button  ng-click="vm.salvar()">salvar</button>
             </div>
         </div>
     </div>
@@ -55,4 +22,5 @@
     <script src="~/js/Skill.js"></script>
     <script src="~/js/Phone.js"></script>
     <script src="~/js/personaldata.js"></script>
+    <script src="~/js/CandidateStep.js"></script>
 }
