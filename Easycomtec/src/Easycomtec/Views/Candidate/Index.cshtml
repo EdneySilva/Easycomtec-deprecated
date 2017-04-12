@@ -23,7 +23,7 @@
                     </tbody>
                 </table>
                 <div ng-controller="SkillControl as vmSkill">
-                    <skill skill="vmSkill.skill"></skill>
+                    <skill skill="vmSkill.skill" skill-added="vm.onAddSkill(skill)"></skill>
                 </div>
                 <table class="table table-responsive table-hover table-striped">
                     <thead>
@@ -40,8 +40,8 @@
                         </tr>
                     </tbody>
                 </table>
-                <div ng-controller="Address as vmAddress">
-                    <address address="vmAddress.address"></address>
+                <div ng-controller="AddressControl as vmAddress">
+                    <address address="vmAddress.address" address-created="vm.onAddAddress(address)"></address>
                 </div>
                 <button  ng-click="vm.salvar()">salvar</button>
             </div>

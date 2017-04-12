@@ -1,1 +1,19 @@
-﻿address
+﻿
+<div class="form-group">
+    <label for="City">City</label>
+    <input type="text" id="City" name="City" ng-model="$ctrl.address.City" class="form-control" />
+</div>
+<div class="form-group">
+    <label for="State">State</label>
+    <input type="text" id="City" name="State" ng-model="$ctrl.address.State" class="form-control" />
+</div>
+<div class="form-group">
+    <label for="Country">Country</label>
+    <input type="text" id="Country" name="Country" ng-model="$ctrl.address.Country" class="form-control" />
+</div>
+<div class="form-group">
+    <label for="PostalCode">PostalCode</label>
+    <input type="text" id="PostalCode" name="PostalCode" ng-model="$ctrl.address.PostalCode" class="form-control" />
+</div>
+<input type="hidden" id="Latitude" name="Latitude" ng-model="$ctrl.address.Latitude"/>
+<input type="hidden" id="Longitude" name="Longitude" ng-model="$ctrl.address.Longitude"/>

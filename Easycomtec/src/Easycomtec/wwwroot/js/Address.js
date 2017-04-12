@@ -1,16 +1,22 @@
 ﻿(function (angular) {
     'use-strict'
-    angular.module("app").controller("Address", function Address() {
-        this.address = {};
+    angular.module("app").controller("AddressControl", function AddressControl() {
+        this.address = new Address();
     }).component("address", {
         bindings: {
-            address: '='
+            address: '=',
+            addressCreated: '&'
         },
-        controller: function (CandidateService, Step, $scope) {
-
+        controller: function ($scope) {
+            this.$onChanges = function () {
+                this.addressCreated({ address: this.address });
+            }
         },
-        templateUrl: function (Step) {
+        templateUrl: function () {
             return "/app/candidate/address.html";
         }
-    });;
+    });
+    angular.module("app").service("AddressService", function AddressService() {
+
+    });
 })(window.angular);

@@ -4,6 +4,8 @@
     Level[Level["KNOW"] = 2] = "KNOW";
     Level[Level["BASIC"] = 3] = "BASIC";
     Level[Level["INTERMEDIATE"] = 4] = "INTERMEDIATE";
+    Level[Level["ADVANCED"] = 5] = "ADVANCED";
+    Level[Level["EXPERT"] = 6] = "EXPERT";
 })(Level || (Level = {}));
 
 function Skill() {

@@ -4,7 +4,8 @@
         this.skill = {};        
     }).component("skill", {
         bindings: {
-            skill: '='
+            skill: '=',
+            skillAdded: "&"
         },
         controller: function (SkillService, Step, $scope) {
             this.levels = [];
@@ -26,7 +27,8 @@
                 _skill.Level = this.skill.Level;
                 _skill.LevelName = Level[this.skill.Level];
                 _skill.Name = this.skill.Name;
-                SkillService.addSkill(_skill);
+                this.skillAdded({ skill: _skill });
+                //SkillService.addSkill(_skill);
                 this.skill.Name = "";
                 this.skill.Level = "";
             }

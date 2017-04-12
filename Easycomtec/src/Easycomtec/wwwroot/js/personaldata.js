@@ -11,20 +11,19 @@
         }
         
     });
-    angular.module("app").controller("Candidate", function Candidate(user, PhoneService, SkillService) {
+    angular.module("app").controller("Candidate", function Candidate(user, PhoneService) {
         this.level = Level;
-        this.phoneService = PhoneService
-        this.skillService = SkillService;
+        this.phoneService = PhoneService;
         this.candidate = user;
         var contexto = this;
-        this.skillService.onSkillAdding(function (skill) {
-            contexto.candidate.AddSkill(skill);
-        });
         this.phoneService.onPhoneAdding(function (phone) {
             contexto.candidate.AddPhone(phone);
         });
-        this.salvar = function () {
-             
+        this.onAddAddress = function (address) {
+            contexto.candidate.Address = address;
+        }
+        this.onAddSkill = function (skill) {
+            contexto.candidate.AddSkill(skill);
         }
     }).component("candidator", {
         bindings: {
