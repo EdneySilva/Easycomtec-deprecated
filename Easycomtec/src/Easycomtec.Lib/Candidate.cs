@@ -25,6 +25,6 @@ namespace Easycomtec.Lib
         public virtual ICollection<Phone> Phones { get; set; }
         //public virtual PaymentInformation PaymentInformation { get; set; }
         public virtual Address Address { get; set; }
-        public virtual Account Account { get; set; }
+        public Account Account { get; set; }
     }
 }
