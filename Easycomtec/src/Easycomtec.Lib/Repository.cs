@@ -12,10 +12,10 @@ namespace Easycomtec.Lib
     public class Repository : DbContext, IRepository
     {
         internal DbSet<Candidate> Candidate { get; set; }
-        internal DbSet<Address> CandidateAddress { get; set; }
-        internal DbSet<Account> CandidateAccount { get; set; }
-        internal DbSet<Skill> CandidateSkill { get; set; }
-        internal DbSet<Phone> CandidatePhone { get; set; }
+        internal DbSet<Address> Address { get; set; }
+        internal DbSet<Account> Account { get; set; }
+        internal DbSet<Skill> Skill { get; set; }
+        internal DbSet<Phone> Phone { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,7 +32,7 @@ namespace Easycomtec.Lib
             modelBuilder.Entity<Candidate>()
                 .HasOne(p => p.Account)
                 .WithOne(p => p.Candidate)
-                .HasForeignKey<Account>(c => c.CandidateId);
+                .HasForeignKey<Account>(c => c.Id);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -42,10 +42,10 @@ namespace Easycomtec.Lib
             return this;
         }
 
-        public void AddOrUpdate<T>(T item) where T : class
+        public IRepository AddOrUpdate<T>(T item) where T : class, IObject
         {
             try
-            {
+            {                
                 var entry = this.Entry<T>(item);
                 if (!entry.IsKeySet)
                     this.Set<T>().Add(item);
@@ -56,6 +56,12 @@ namespace Easycomtec.Lib
             {
 
             }
+            return this;
+        }
+
+        public void Save()
+        {
+            this.SaveChanges();
         }
     }
 }

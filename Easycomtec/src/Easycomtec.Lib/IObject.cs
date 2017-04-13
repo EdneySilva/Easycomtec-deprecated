@@ -2,5 +2,6 @@
 {
     public interface IObject
     {
+        bool IsValid { get; }
     }
 }
