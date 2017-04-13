@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Easycomtec.Lib;
 
 namespace Easycomtec
 {
@@ -35,7 +36,7 @@ namespace Easycomtec
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
+            services.AddScoped<IRepository, Repository>();
             services.AddMvc();
         }
 

@@ -12,9 +12,9 @@ namespace Easycomtec.Controllers
     public class CandidateController : Controller
     {
         IRepository EasyRepository { get; set; }
-        public CandidateController()
+        public CandidateController(IRepository repository)
         {
-         
+            EasyRepository = repository;
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -36,18 +36,15 @@ namespace Easycomtec.Controllers
         public JsonResult Create([FromBody]Candidate candidate)
         {
             //if (!this.ModelState.IsValid) ;
+            object retorno = null;
             try
             {
-                Repository repository = new Repository();
-                repository.AddOrUpdate(candidate);
-                repository.SaveChanges();
+                EasyRepository.AddOrUpdate(candidate).Save();
             }
             catch (Exception ex)
             {
             }
-            return Json(new
-            {
-            });
+            return Json(retorno);
             //return View();
         }
     }
