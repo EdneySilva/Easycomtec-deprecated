@@ -35,7 +35,7 @@ namespace Easycomtec.Controllers
         [HttpPost]
         public JsonResult Create([FromBody]Candidate candidate)
         {
-            //if (!this.ModelState.IsValid) ;
+            if (!this.ModelState.IsValid) ;
             object retorno = null;
             try
             {

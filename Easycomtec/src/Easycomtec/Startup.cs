@@ -37,7 +37,11 @@ namespace Easycomtec
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddScoped<IRepository, Repository>();
-            services.AddMvc();
+            
+            services.AddMvc((s) =>
+            {
+                s.ModelValidatorProviders.Add(new Validators.RepositoryValidatorProvider());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
