@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Easycomtec.Lib
 {
-    public class Address
+    public class Address : IObject
     {
         [Key]
         public int Id { get; set; }
@@ -17,5 +17,18 @@ namespace Easycomtec.Lib
         public int CandidateId { get; set; }
 
         public virtual Candidate Candidate { get; set; }
+
+        public Address()
+        {
+
+        }
+
+        public IValidationResult Validate(IAssert gerenciador)
+        {
+            gerenciador.For(this).Property(p => p.City).IsRequired();
+            gerenciador.For(this).Property(p => p.State).IsRequired();
+            gerenciador.For(this).Property(p => p.Country).IsRequired();
+            return gerenciador.Result();
+        }
     }
 }

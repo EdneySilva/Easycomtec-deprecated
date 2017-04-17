@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Easycomtec.Lib
@@ -12,5 +13,9 @@ namespace Easycomtec.Lib
         public int CandidateId { get; set; }
         public Candidate Candidate { get; set; }
 
+        public IValidationResult Validate(IAssert assert)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

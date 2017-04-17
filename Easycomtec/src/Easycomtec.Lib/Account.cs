@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Easycomtec.Lib
 {
@@ -9,6 +10,10 @@ namespace Easycomtec.Lib
         public string Password { get; set; } 
         [ForeignKey("Id")]
         public Candidate Candidate { get; set; }
-        
+
+        public IValidationResult Validate(IAssert assert)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

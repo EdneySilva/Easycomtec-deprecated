@@ -2,6 +2,6 @@
 {
     public interface IObject
     {
-        bool IsValid { get; }
+        IValidationResult Validate(IAssert assert);
     }
 }

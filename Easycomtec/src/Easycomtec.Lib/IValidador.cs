@@ -1,58 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Easycomtec.Lib
 {
     public interface IValidator
     {
-        void Execute(IValidationResult resuldadoGeral);
+        IValidationResult Run();
     }
 
     public interface IValidator<T> : IValidator
     {
-        IValidator<T> Context(T item);
-        IValidator<T> Configurate(Expression<Func<T, bool>> configurate);
-        IValidator<T> Message(Func<T, string> message);
+        IRole<T, TP> Property<TP>(Func<T, TP> configure);
     }
 
-    public class Validator<T> : IValidator<T>
+    public class Validator<T>  : IValidator<T>
     {
-        T Item { get; set; }
-        Expression<Func<T, bool>> Validation { get; set; }
-        Func<T, string> MessageBuilder { get; set; }
-
-        public Validator()
+        ICollection<IRole<T>> Roles { get; set; }
+        IAssert AssertContext { get; set; }
+        T Context { get; }
+        public Validator(T context, IAssert assert)
         {
-
+            Context = context;
+            AssertContext = assert;
+        }
+        
+        public IValidationResult Run()
+        {
+            IValidationResult result = new ValidationResult();
+            Roles.AsParallel().Select((s) => s.Test(Context)).ToArray();
+            return result;
         }
 
-        public IValidator<T> Context(T item)
+        public IRole<T, TP> Property<TP>(Func<T, TP> configure)
         {
-            this.Item = item;
-            return this;
-        }
-
-        public IValidator<T> Configurate(Expression<Func<T, bool>> configurar)
-        {
-            Validation = configurar;
-            return this;
-        }
-
-        public IValidator<T> Message(Func<T, string> mensagem)
-        {
-            MessageBuilder = mensagem;
-            return this;
-        }
-
-        public void Execute(IValidationResult result)
-        {
-            if (this.Validation.Compile().Invoke(this.Item))
-                return;
-            //result.AdicionarErro(
-            //    this.Validation.ToString(),
-            //    this.MessageBuilder?.Invoke(this.Item) ??
-            //    $"Não foi gerado resultado positivo para: {this.Validation.ToString()}"
-            //);
+            var role = new Role<T, TP>();
+            Roles.Add(role);
+            return role;
         }
     }
 }

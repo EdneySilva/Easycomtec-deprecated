@@ -1,13 +1,14 @@
 {
   "version": "1.0.0-*",
 
-  "dependencies": {    
+  "dependencies": {
     "Microsoft.EntityFrameworkCore": "1.1.1",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.1.1",
     "Microsoft.Extensions.Configuration": "1.1.1",
     "Microsoft.Extensions.Configuration.FileExtensions": "1.1.0",
     "Microsoft.Extensions.Configuration.Json": "1.1.0",
-    "NETStandard.Library": "1.6.1"
+    "NETStandard.Library": "1.6.1",
+    "System.Linq.Parallel": "4.4.0-beta-24829-01"
   },
 
   "frameworks": {

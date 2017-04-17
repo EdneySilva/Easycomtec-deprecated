@@ -26,5 +26,14 @@ namespace Easycomtec.Lib
         //public virtual PaymentInformation PaymentInformation { get; set; }
         public virtual Address Address { get; set; }
         public Account Account { get; set; }
+
+        public IValidationResult Validate(IAssert assert)
+        {
+            assert.For(this).Property(p => p.Name).IsRequired();
+            assert.For(this).Property(p => p.BirthDate).IsRequired();
+            assert.For(this).Property(p => p.Skills).IsNotEmpty();
+            assert.For(this).Property(p => p.Phones).IsNotEmpty();
+            return assert.Result();
+        }
     }
 }
