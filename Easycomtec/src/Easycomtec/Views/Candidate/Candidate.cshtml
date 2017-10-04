@@ -1,0 +1,77 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Easycomtec.Lib.Candidate
+<script>
+    function teste(a) {
+        console.log(a);
+
+    }
+</script>
+<div class="" onload="">
+    @{
+        var result = Html.Raw(
+            Newtonsoft.Json.JsonConvert.SerializeObject(
+                this.Model,
+                new Newtonsoft.Json.JsonSerializerSettings()
+                {
+                    //Converters = new List<Newtonsoft.Json.JsonConverter>()
+                    //{
+                    //    new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter()
+                    //},
+                    ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                })
+        );
+    }
+    <div ng-app="app">
+        <div class="body-content">
+            <div class="panel panel-default">
+                <div class="panel-heading"></div>
+                <div class="panel-body">
+                    <div ng-controller="Candidate as vm" class="col-md-6">                        
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">Personal Data</a></li>
+                            <li><a data-toggle="tab" href="#menu1">Phones</a></li>
+                            <li><a data-toggle="tab" href="#menu2">Skills</a></li>
+                            <li><a data-toggle="tab" href="#menu3">Address</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">                                
+                                <candidator candidate="vm.candidate" candidate-load='@result'></candidator>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <div ng-controller="Phone as vmPhone">
+                                    <phonecontrol phone="vmPhone.phone" candidate="vm.candidate"></phonecontrol>
+                                </div>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <div ng-controller="SkillControl as vmSkill">
+                                    <skill skill="vmSkill.skill" candidate="vm.candidate" skill-added="vm.onAddSkill(skill)"></skill>
+                                </div>
+                            </div>
+                            <div id="menu3" class="tab-pane fade">
+                                <div ng-controller="AddressControl as vmAddress">
+                                    <address address="vm.candidate.Address" address-created="vm.onAddAddress(address)"></address>
+                                </div>
+
+                            </div>
+                        </div>
+                        <button class="btn btn-success" ng-click="vm.save()">salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="~/js/Candidate.js"></script>
+    <script src="~/js/Address.js"></script>
+    <script src="~/js/Skill.js"></script>
+    <script src="~/js/Phone.js"></script>
+    <script src="~/js/personaldata.js"></script>
+    <script src="~/js/CandidateStep.js"></script>
+}

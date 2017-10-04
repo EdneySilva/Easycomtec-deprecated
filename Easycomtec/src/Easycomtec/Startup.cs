@@ -37,11 +37,14 @@ namespace Easycomtec
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
             services.AddScoped<IRepository, Repository>();
-            
             services.AddMvc((s) =>
             {
                 s.ModelValidatorProviders.Add(new Validators.RepositoryValidatorProvider());
-            });
+            }).AddJsonOptions((jOptions) =>
+            {
+                jOptions.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+                jOptions.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            }); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

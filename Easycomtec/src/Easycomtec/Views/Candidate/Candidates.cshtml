@@ -1,0 +1,32 @@
+﻿@*
+
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<Easycomtec.Lib.Candidate>
+<div class="col-md-12">
+    <table class="table table-responsive table-hover table-striped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>E-mail</td>
+                <td>Age</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var candidate in this.Model)
+            {
+                <tr>
+                    <td>@candidate.Name</td>
+                    <td>@candidate.Account.Email</td>
+                    <td>@(new DateTime(DateTime.Now.Subtract(candidate.BirthDate).Ticks).Year)</td>
+                    <td>
+                        <a class="btn btn-success" href="/Candidate/@candidate.Id">edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
