@@ -22,8 +22,8 @@ namespace Easycomtec.Lib
         public IValidator<T> For<T>(T item)
         {
             var validator = new Validator<T>(item, this);
-            CurrentValidator = validator;
-            return validator;
+            CurrentValidator = CurrentValidator ?? new Validator<T>(item, this);
+            return (IValidator<T>)CurrentValidator;
         }
 
         public IValidationResult Result()

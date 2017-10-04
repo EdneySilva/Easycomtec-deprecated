@@ -25,9 +25,9 @@ namespace Easycomtec.Lib
 
         public IValidationResult Validate(IAssert gerenciador)
         {
-            gerenciador.For(this).Property(p => p.City).IsRequired();
-            gerenciador.For(this).Property(p => p.State).IsRequired();
-            gerenciador.For(this).Property(p => p.Country).IsRequired();
+            gerenciador.For(this).Property(p => p.City).IsRequired("The city is required");
+            gerenciador.For(this).Property(p => p.State).IsRequired("The state is required");
+            gerenciador.For(this).Property(p => p.Country).IsRequired("The country is required");
             return gerenciador.Result();
         }
     }

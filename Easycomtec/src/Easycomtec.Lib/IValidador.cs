@@ -17,7 +17,7 @@ namespace Easycomtec.Lib
 
     public class Validator<T>  : IValidator<T>
     {
-        ICollection<IRole<T>> Roles { get; set; }
+        ICollection<IRole<T>> Roles { get; set; } = new List<IRole<T>>();
         IAssert AssertContext { get; set; }
         T Context { get; }
         public Validator(T context, IAssert assert)
@@ -28,14 +28,16 @@ namespace Easycomtec.Lib
         
         public IValidationResult Run()
         {
-            IValidationResult result = new ValidationResult();
-            Roles.AsParallel().Select((s) => s.Test(Context)).ToArray();
+            IValidationResult result = new ValidationResult(
+                Roles//.AsParallel()
+                    .Select((s) => s.Test(Context)).ToArray()
+            );
             return result;
         }
 
         public IRole<T, TP> Property<TP>(Func<T, TP> configure)
         {
-            var role = new Role<T, TP>();
+            var role = new Role<T, TP>(configure);
             Roles.Add(role);
             return role;
         }

@@ -35,11 +35,10 @@ namespace Easycomtec.Lib
                 .HasForeignKey<Account>(c => c.Id);
             base.OnModelCreating(modelBuilder);
         }
-
-        public IRepository For<T>(T teste)
+        
+        public IQueryable<T> Query<T>() where T : class
         {
-            
-            return this;
+            return Set<T>().AsQueryable();
         }
 
         public IRepository AddOrUpdate<T>(T item) where T : class, IObject
@@ -56,6 +55,15 @@ namespace Easycomtec.Lib
             {
 
             }
+            return this;
+        }
+
+        public IRepository RemoveItem<T>(T item) 
+            where T : class, IObject
+        {
+            if (this.Entry(item).State == EntityState.Detached)
+                this.Attach(item);
+            this.Set<T>().Remove(item);
             return this;
         }
 

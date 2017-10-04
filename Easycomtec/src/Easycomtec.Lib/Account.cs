@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Easycomtec.Lib.Extension;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Easycomtec.Lib
@@ -13,7 +14,10 @@ namespace Easycomtec.Lib
 
         public IValidationResult Validate(IAssert assert)
         {
-            throw new NotImplementedException();
+            assert.For(this).Property(p => p.Email).IsRequired("The account e-mail is required");
+            assert.For(this).Property(p => p.Email).Is(p => p.IsEmail(), "The account e-mail is invalid");
+            assert.For(this).Property(p => p.Password).IsRequired("The password is required");
+            return assert.Result();
         }
     }
 }

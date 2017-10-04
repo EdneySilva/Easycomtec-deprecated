@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Easycomtec.Lib.Extension;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,7 +16,8 @@ namespace Easycomtec.Lib
 
         public IValidationResult Validate(IAssert assert)
         {
-            throw new NotImplementedException();
+            assert.For(this).Property(item => item.Number).Is((p) => p.IsPhoneNumber(), "The phone number is invalid");
+            return assert.Result();
         }
     }
 }

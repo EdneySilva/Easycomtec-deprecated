@@ -29,10 +29,14 @@ namespace Easycomtec.Lib
 
         public IValidationResult Validate(IAssert assert)
         {
-            assert.For(this).Property(p => p.Name).IsRequired();
-            assert.For(this).Property(p => p.BirthDate).IsRequired();
-            assert.For(this).Property(p => p.Skills).IsNotEmpty();
-            assert.For(this).Property(p => p.Phones).IsNotEmpty();
+            assert.For(this).Property(p => p.Name).IsRequired("The name required");
+            assert.For(this).Property(p => p.BirthDate).IsRequired("The birth is required");
+            assert.For(this).Property(p => p.BirthDate).IsNot(DateTime.MinValue, "The birth date is invalid");
+            if (this.Id.Equals(0))
+            {
+                assert.For(this).Property(p => p.Skills).IsNotEmpty("The skill list can not  be empty");
+                assert.For(this).Property(p => p.Phones).IsNotEmpty("The phone list can not be empty");
+            }
             return assert.Result();
         }
     }

@@ -1,0 +1,7 @@
+C:\Users\edney\Downloads\Easycomtec-master (1)\Easycomtec-master\Easycomtec\src\Easycomtec.Lib\bin\Debug\netstandard1.6\Easycomtec.Lib.deps.json
+C:\Users\edney\Downloads\Easycomtec-master (1)\Easycomtec-master\Easycomtec\src\Easycomtec.Lib\obj\Debug\netstandard1.6\Easycomtec.Lib.csprojResolveAssemblyReference.cache
+C:\Users\edney\Downloads\Easycomtec-master (1)\Easycomtec-master\Easycomtec\src\Easycomtec.Lib\obj\Debug\netstandard1.6\Easycomtec.Lib.AssemblyInfo.cs
+C:\Users\edney\Downloads\Easycomtec-master (1)\Easycomtec-master\Easycomtec\src\Easycomtec.Lib\bin\Debug\netstandard1.6\Easycomtec.Lib.dll
+C:\Users\edney\Downloads\Easycomtec-master (1)\Easycomtec-master\Easycomtec\src\Easycomtec.Lib\bin\Debug\netstandard1.6\Easycomtec.Lib.pdb
+C:\Users\edney\Downloads\Easycomtec-master (1)\Easycomtec-master\Easycomtec\src\Easycomtec.Lib\obj\Debug\netstandard1.6\Easycomtec.Lib.dll
+C:\Users\edney\Downloads\Easycomtec-master (1)\Easycomtec-master\Easycomtec\src\Easycomtec.Lib\obj\Debug\netstandard1.6\Easycomtec.Lib.pdb

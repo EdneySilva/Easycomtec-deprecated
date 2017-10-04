@@ -16,7 +16,9 @@ namespace Easycomtec.Lib
 
         public IValidationResult Validate(IAssert assert)
         {
-            throw new NotImplementedException();
+            assert.For(this).Property(p => p.Name).IsRequired("Name is required");
+            assert.For(this).Property(p => p.Level).IsNot((Level)0, "Level is required");
+            return assert.Result();
         }
     }
 }
