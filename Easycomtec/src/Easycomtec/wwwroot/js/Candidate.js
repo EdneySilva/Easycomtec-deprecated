@@ -47,11 +47,22 @@ function User() {
     this.Skills = [];
     this.Address = {};
     this.Account = {};
+    var context = this;
     this.AddPhone = function (phone) {
         this.Phones.push(phone);
     }
+    this.RemovePhone = function (phone) {
+        var index = context.Phones.indexOf(phone);
+        if (index !== undefined && index >= 0)
+            context.Phones.splice(index);
+    }
     this.AddSkill = function (skill) {
-        this.Skills.push(skill);
+        context.Skills.push(skill);
+    }
+    this.RemoveSkill = function (skill) {
+        var index = context.Skills.indexOf(skill);
+        if (index !== undefined && index >= 0)
+            context.Skills.splice(index);
     }
     return this;
 }

@@ -7,14 +7,55 @@
             phone: '=',
             candidate: "="
         },
-        controller: function (PhoneService, $scope) {
+        controller: function (PhoneService, $scope, $http) {
             this.add = function () {
+                var context = this;
                 var _phone = new PhoneNumber();
                 _phone.Id = this.phone.Id;
                 _phone.Number = this.phone.Number;
-                this.candidate.AddPhone(_phone);
+
+                if (this.candidate.Id > 0) {
+                    _phone.CandidateId = this.candidate.Id;
+                    $http.post("/Candidate/AddPhone", JSON.stringify(_phone), {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then((response) => {
+                        if (response.data.Success === true) {
+                            _phone.Id = response.data.Model.Id;
+                            context.candidate.AddPhone(_phone);
+                        }
+                        else {
+                            console.log(response.data.Trace);
+                            alert(contexto.toMessageError(response.data.Erros));
+                        }
+                    }, function (response) {
+
+                    });
+                }else
+                    this.candidate.AddPhone(_phone);
                 //PhoneService.addPhone(_phone);
                 this.phone.Number = "";
+            }
+            this.remove = function (phone) {
+                var context = this;
+                if (phone.Id > 0)
+                    $http.post("/Candidate/RemovePhone", JSON.stringify(phone), {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then((response) => {
+                        if (response.data.Success === true)
+                            context.candidate.RemovePhone(phone);
+                        else {
+                            console.log(response.data.Trace);
+                            alert(contexto.toMessageError(response.data.Erros));
+                        }
+                    }, function (response) {
+
+                    });
+                else
+                    this.candidate.RemovePhone(phone);
             }
         },
         templateUrl: function () {

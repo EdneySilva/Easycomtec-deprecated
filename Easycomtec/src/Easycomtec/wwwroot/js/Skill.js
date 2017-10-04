@@ -8,7 +8,7 @@
             skill: '=',
             skillAdded: "&"
         },
-        controller: function (SkillService, Step, $scope) {
+        controller: function (SkillService, Step, $scope, $http) {
             this.levels = [];
             function createLevel(name, value) {
                 return {
@@ -28,10 +28,48 @@
                 _skill.Level = this.skill.Level;
                 _skill.LevelName = Level[this.skill.Level];
                 _skill.Name = this.skill.Name;
-                this.skillAdded({ skill: _skill });
+                var context = this;
+                if (context.candidate.Id > 0) {
+                    _skill.CandidateId = this.candidate.Id;
+                    $http.post("/Candidate/AddSkill", JSON.stringify(_skill), {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then((response) => {
+                        if (response.data.Success === true) {
+                            _skill.Id = response.data.Model.Id;
+                            context.skillAdded({ skill: _skill });
+                        }
+                        else {
+                            console.log(response.data.Trace);
+                            alert(contexto.toMessageError(response.data.Erros));
+                        }
+                    }, function (response) {
+
+                    });
+                } else
+                    this.skillAdded({ skill: _skill });
                 //SkillService.addSkill(_skill);
                 this.skill.Name = "";
                 this.skill.Level = "";
+            }
+            this.remove = function (skill) {
+                var context = this;
+                if (skill.Id > 0)
+                    $http.post("/Candidate/RemoveSkill", JSON.stringify(skill), {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then((response) => {
+                        if (response.data.Success === true)
+                            context.candidate.RemoveSkill(skill);
+                        else {
+                            console.log(response.data.Trace);
+                            alert(contexto.toMessageError(response.data.Erros));
+                        }
+                    });
+                else
+                    this.candidate.RemoveSkill(skill);
             }
         },
         templateUrl: function () {
